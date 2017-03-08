@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/07 21:47:29 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/07 22:42:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,19 @@ typedef struct		s_lemd
 typedef struct		s_path
 {
 	char			*name;
-	int				p_len;
-	s_path			*nx_node;
-	s_path			*nx_path;
+	int				len;
+	struct s_path	*n_node;
+	struct s_path	*n_path;
 }					t_path;
 
+
+
+
+/*
+**	d_constructors
+*/
+t_lemd				*data_constructor(char *name, char **connections);
+t_path				*path_constructor(char *name, int len, t_path *n_node, 
+						t_path *n_path);
 
 #endif
