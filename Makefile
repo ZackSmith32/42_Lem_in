@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/07 22:41:30 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/08 09:00:09 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME	=	lem-in
 FLAGS	=	-c -Wall -Wextra -Werror
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c			\
-			d_constructors.c	\
+			b_parse.c			\
+			g_constructors.c	\
 
 SRCDIR  =	srcs/
 HDIR	=	includes/
@@ -26,7 +27,7 @@ all: $(NAME)
 
 $(NAME): 
 	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) 	\
-		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a') 
+		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libvector.a') 
 	
 libft:
 	make re -C /nfs/2016/z/zsmith/libft_dir/libft

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/07 22:42:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/08 09:22:03 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_LEM_IN_H
 
 # include "ft_printf.h"
+# include "vector.h"
 
 typedef struct		s_lemd
 {
@@ -29,8 +30,10 @@ typedef struct		s_path
 	struct s_path	*n_path;
 }					t_path;
 
-
-
+/*
+**	b_parse
+*/
+int					parse();
 
 /*
 **	d_constructors
