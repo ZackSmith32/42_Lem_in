@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 12:02:11 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/07 16:56:40 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/09 14:30:02 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ void				ft_color_on(int argc, ...);
 long long			ft_atol(const char *s);
 void				ft_putarr(int *a, int len);
 int					ft_keyhook(char key);
+void				ft_puterror(char *str);
+int					ft_isnum(char *str);
+
 
 
 
