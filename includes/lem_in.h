@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/09 14:20:02 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/09 15:16:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_path
 **	b_parse
 */
 int					parse();
+int					make_graph(char ***data);
 
 /*
 **	g_constructors
@@ -47,11 +48,10 @@ t_path				*path_constructor(char *name, int len, t_path *n_node,
 /*
 **	i_make_graph
 */
-int					make_graph(char ***data);
 
 /*
 **	j_make_nodes
 */
-void				make_nodes(char ***data, t_lemd ***nodes);
+int					make_nodes(char ***data, t_lemd ***nodes);
 
 #endif

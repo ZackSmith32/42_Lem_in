@@ -6,22 +6,27 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/08 09:23:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/09 15:19:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	lem_in()
+static int	lem_in()
 {
 	
 	if (!parse())
-		return ;
+		return (0);
+	return (1);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	lem_in();
+	if (!lem_in())
+	{
+		ft_puterror("Error");
+		return (0);
+	}
 	ft_printf("%@cyan@s\n", "Hello World");
 	return (0);
 }

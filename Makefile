@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/09 14:19:18 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/09 20:56:05 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ all: $(NAME)
 
 $(NAME): 
 	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) 	\
-		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libvector.a') 
+		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libvector.a' \
+			'libvect.a') 
 	
 libft:
 	make re -C /nfs/2016/z/zsmith/libft_dir/libft
@@ -42,6 +43,10 @@ printf:
 vector:
 	make re -C /nfs/2016/z/zsmith/vector
 	cp /nfs/2016/z/zsmith/vector/includes/vector.h ./includes
+
+vect:
+	make re -C /nfs/2016/z/zsmith/vect
+	cp /nfs/2016/z/zsmith/vect/includes/vect.h ./includes
 
 clean:
 	/bin/rm -f $(addprefix $(SRCDIR), $(OFILES))

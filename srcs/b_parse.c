@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/09 14:18:42 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/09 15:19:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int		make_graph(char ***data)
 {
+	ft_printf("in: make graph\n");
 	int		i;
 	t_lemd	*new;
-	t_lend	**nodes;
+	t_lemd	**nodes;
 
-	make_nodes(data, &nodes);
+	nodes = ft_memalloc(sizeof(t_lemd*) * 1);
+	if (!make_nodes(data, &nodes))
+		return (0);
 
 
-
+	return (1);
 
 }
 
