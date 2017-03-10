@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/09 15:16:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/10 09:11:04 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "ft_printf.h"
 # include "vector.h"
+# include "vect.h"
 
 typedef struct		s_lemd
 {
@@ -36,7 +37,6 @@ typedef struct		s_path
 **	b_parse
 */
 int					parse();
-int					make_graph(char ***data);
 
 /*
 **	g_constructors
@@ -52,6 +52,6 @@ t_path				*path_constructor(char *name, int len, t_path *n_node,
 /*
 **	j_make_nodes
 */
-int					make_nodes(char ***data, t_lemd ***nodes);
+int				make_nodes(char ***data, t_vect **nodes);
 
 #endif

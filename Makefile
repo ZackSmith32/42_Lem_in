@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/09 20:56:05 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/10 11:25:00 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ CFILES	=	a_lem_in.c			\
 			i_make_graph.c		\
 			j_make_nodes.c		\
 
+			# test_mallocwrap.c	\
+			
 SRCDIR  =	srcs/
 HDIR	=	includes/
 LIBDIR  =	libdir/
@@ -28,8 +30,8 @@ LIBDIR  =	libdir/
 all: $(NAME)
 
 $(NAME): 
-	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR) 	\
-		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libvector.a' \
+	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR)					\
+		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libarray.a' 	\
 			'libvect.a') 
 	
 libft:
@@ -40,9 +42,9 @@ printf:
 	make re -C /nfs/2016/z/zsmith/printf
 	cp /nfs/2016/z/zsmith/printf/includes/ft_printf.h ./includes
 
-vector:
-	make re -C /nfs/2016/z/zsmith/vector
-	cp /nfs/2016/z/zsmith/vector/includes/vector.h ./includes
+array:
+	make re -C /nfs/2016/z/zsmith/libarray
+	cp /nfs/2016/z/zsmith/libarray/includes/libarray.h ./includes
 
 vect:
 	make re -C /nfs/2016/z/zsmith/vect
