@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/10 11:25:00 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/11 16:16:00 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ CFILES	=	a_lem_in.c			\
 			g_constructors.c	\
 			i_make_graph.c		\
 			j_make_nodes.c		\
+			test_mallocwrap.c	\
 
-			# test_mallocwrap.c	\
 			
 SRCDIR  =	srcs/
 HDIR	=	includes/

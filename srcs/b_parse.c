@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/10 10:37:30 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/11 16:20:45 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	make_graph(char ***data)
 	nodes = v_new(0, sizeof(t_lemd *));
 	if (!make_nodes(data, &nodes))
 		return (0);
-
+	print_vector(nodes);
 
 	free_vector(nodes);
 	return (1);
