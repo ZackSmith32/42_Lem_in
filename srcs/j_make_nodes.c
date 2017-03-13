@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/11 16:15:05 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/13 12:36:49 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,28 @@ static int		create_node(char *line, t_vect **nodes)
 	return (1);
 }
 
-int				make_nodes(char ***data, t_vect **nodes)
+int				make_nodes(t_vect *data, t_vect **nodes)
 {
 	ft_printf("in: make nodes\n");
 	int		i;
-	int		len;
-	char	**this;
+	char	*line;
 
-	this = *data;
-	len = ft_tablen(this);
 	i = 0;
-	while (i < len)
+	while (i < data->units)
 	{
-		if (check_node(this[i]))
+		line = v_item(data, i);
+		if (check_node(line))
 		{
-			create_node(this[i], nodes);
-			// ft_deltab(data, i);
+			create_node(line, nodes);
+			printf("del tab next\n");
+			v_remove(data, i);
+			i = 0;
 		}
 		else
 		{
+			i++;
 			printf("check node failed\n");
 		}
-		i++;
 	}
 	printf("count = %d\n", i);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/10 09:11:04 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/13 12:35:08 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_LEM_IN_H
 
 # include "ft_printf.h"
-# include "vector.h"
+# include "libarray.h"
 # include "vect.h"
 
 typedef struct		s_lemd
@@ -52,6 +52,13 @@ t_path				*path_constructor(char *name, int len, t_path *n_node,
 /*
 **	j_make_nodes
 */
-int				make_nodes(char ***data, t_vect **nodes);
+int				make_nodes(t_vect *data, t_vect **nodes);
+
+/*
+**	k_print
+*/
+void			print_lemd(t_vect *nodes);
+void			print_char(t_vect *data);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/11 16:20:45 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/13 12:39:59 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		free_vector(t_vect *nodes)
 	i = 0;
 	while (i < len)
 	{
-		temp = (t_lemd *)v_item(i, nodes);
+		temp = (t_lemd *)v_item(nodes, i);
 		free(temp->name);
 		// printf("connections addr = %p\n", temp->connections);
 		// ft_freetab(temp->connections);
@@ -33,7 +33,7 @@ void		free_vector(t_vect *nodes)
 	free(nodes);
 }
 
-static int	make_graph(char ***data)
+static int	make_graph(t_vect *data)
 {
 	ft_printf("in: make graph\n");
 	int		i;
@@ -43,24 +43,24 @@ static int	make_graph(char ***data)
 	nodes = v_new(0, sizeof(t_lemd *));
 	if (!make_nodes(data, &nodes))
 		return (0);
-	print_vector(nodes);
+	print_lemd(nodes);
+	print_char(data);
 
 	free_vector(nodes);
 	return (1);
 
 }
 
-static void	read_input(char ***data)
+static void	read_input(t_vect *data)
 {
 	printf("in: read_input\n");
 	char	*line;
 	int		i;
 
-	*data = ft_memalloc(sizeof(char *) * 1);
 	i = 0;
 	while (get_next_line(0, &line) == 1)
 	{
-		ft_pushstr(data, line);
+		v_insert(data, data->units, line);
 		free(line);
 		i++;
 	}
@@ -70,23 +70,21 @@ static void	read_input(char ***data)
 int			parse()
 {
 	printf("in: parse \n");
-	char	**data;
+	t_vect	*data;
 	int		len;
 
-
-	read_input(&data);
-	printf("len = %d\n", ft_tablen(data));
-	ft_puttab(data);
-	len = ft_tablen(data);
-	// if (len == 0)
-	// {
-	// 	ft_puterror("no input");
-	// 	return (0);
-	// }
-	make_graph(&data);
+	data = v_new(0, sizeof(char *));
+	read_input(data);
+	print_char(data);
+	if (data->len == 0)
+	{
+		ft_puterror("no input");
+		return (0);
+	}
+	make_graph(data);
 		// create nodes
 		// create connections
-	ft_freetab(data);
-	free(data);
+	// ft_freetab(data);
+	// free(data);
 	return (1);
 }
