@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/11 17:04:41 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/13 12:59:56 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c			\
 			b_parse.c			\
 			g_constructors.c	\
-			i_make_graph.c		\
+			i_parse_comments.c	\
 			j_make_nodes.c		\
 			k_print.c			\
 

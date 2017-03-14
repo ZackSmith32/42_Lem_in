@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/13 12:39:59 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/13 17:48:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ static int	make_graph(t_vect *data)
 	t_vect	*nodes;
 
 	nodes = v_new(0, sizeof(t_lemd *));
-	if (!make_nodes(data, &nodes))
+	printf("sizeof(t_lemd*) = %d\n", (int)sizeof(t_lemd*));
+	if (!parse_comments(data, nodes))
+		return (0);
+	if (!make_nodes(data, nodes))
 		return (0);
 	print_lemd(nodes);
 	print_char(data);
@@ -53,7 +56,6 @@ static int	make_graph(t_vect *data)
 
 static void	read_input(t_vect *data)
 {
-	printf("in: read_input\n");
 	char	*line;
 	int		i;
 
@@ -75,8 +77,8 @@ int			parse()
 
 	data = v_new(0, sizeof(char *));
 	read_input(data);
-	print_char(data);
-	if (data->len == 0)
+	// print_char(data);
+	if (data->len  == 0)
 	{
 		ft_puterror("no input");
 		return (0);
