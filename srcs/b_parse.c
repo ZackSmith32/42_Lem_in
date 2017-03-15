@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/13 17:48:09 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:38:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,20 @@ static int	make_graph(t_vect *data)
 {
 	ft_printf("in: make graph\n");
 	int		i;
-	t_lemd	*new;
 	t_vect	*nodes;
 
 	nodes = v_new(0, sizeof(t_lemd *));
-	printf("sizeof(t_lemd*) = %d\n", (int)sizeof(t_lemd*));
 	if (!parse_comments(data, nodes))
 		return (0);
 	if (!make_nodes(data, nodes))
 		return (0);
+	if (!make_connections(data, nodes))
+		return (0);
 	print_lemd(nodes);
-	print_char(data);
+	// print_char(data);
 
-	free_vector(nodes);
+	// free_vector(nodes);
+	// free_vector(data);
 	return (1);
 
 }
@@ -62,7 +63,7 @@ static void	read_input(t_vect *data)
 	i = 0;
 	while (get_next_line(0, &line) == 1)
 	{
-		v_insert(data, data->units, line);
+		v_insert(data, data->units, ft_strdup(line));
 		free(line);
 		i++;
 	}
@@ -77,16 +78,46 @@ int			parse()
 
 	data = v_new(0, sizeof(char *));
 	read_input(data);
-	// print_char(data);
 	if (data->len  == 0)
 	{
 		ft_puterror("no input");
 		return (0);
 	}
 	make_graph(data);
-		// create nodes
-		// create connections
-	// ft_freetab(data);
-	// free(data);
 	return (1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

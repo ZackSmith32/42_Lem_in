@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/13 12:59:56 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/15 14:32:13 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ CFILES	=	a_lem_in.c			\
 			i_parse_comments.c	\
 			j_make_nodes.c		\
 			k_print.c			\
+			l_make_connections.c\
+			test_mallocwrap.c	\
 
-			# test_mallocwrap.c	\
 			
 SRCDIR  =	srcs/
 HDIR	=	includes/

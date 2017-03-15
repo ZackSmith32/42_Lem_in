@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/13 18:05:41 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:28:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 typedef struct		s_lemd
 {
-	char			*name;
 	int				s_e;
-	char			**connections;
+	char			*name;
+	t_vect			*connections;
 }					t_lemd;
 
 typedef struct		s_path
@@ -62,6 +62,14 @@ int				create_node(char *line, t_vect *nodes, int s_e);
 */
 void			print_lemd(t_vect *nodes);
 void			print_char(t_vect *data);
+t_lemd			*return_match(t_vect *nodes, char *name);
+
+
+/*
+**	l_make_connections
+*/
+int		make_connections(t_vect *data, t_vect *nodes);
+
 
 
 #endif

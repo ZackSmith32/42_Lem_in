@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/13 18:17:30 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:37:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,14 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 	t_lemd	*new;
 	int		*temp;
 	void	*ptr;
+	t_lemd	*temp2;
 
 	ptr = NULL;
-	// ft_printf("line = %s\n", line);
 	tab = ft_strsplit(line, ' ');
 	new = (t_lemd *)ft_memalloc(sizeof(t_lemd));
-	printf("size of char* = %d\n", (int)sizeof(char *));
-	printf("size of int = %d\n", (int)sizeof(int));
-	printf("size of char ** = %d\n", (int)sizeof(char**));
-	printf("sizeof lemd = %d\n", (int)sizeof(t_lemd));
 	new->name = ft_strdup(tab[0]);
-	new->connections = ptr;
-	// temp = (int *)ft_memalloc(sizeof(int));
-	// *temp = s_e;
-	// new->s_e = temp;
-	printf("s_e = %d\n", s_e);
 	new->s_e = s_e;
-	printf("name = %s, start/end = %d\n", new->name, new->s_e);
 	v_insert(nodes, 0, new);
-
-	free(new);
 	ft_freetab(tab);
 	free(tab);
 	return (1);
@@ -80,14 +68,14 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 
 int				make_nodes(t_vect *data, t_vect *nodes)
 {
-	// ft_printf("in: make nodes\n");
+	ft_printf("in: make nodes\n");
 	int		i;
 	char	*line;
 
 	i = 0;
 	while (i < data->units)
 	{
-		line = v_item(data, i);
+		line = *((char **)v_item(data, i));
 		if (check_node(line))
 		{
 			create_node(line, nodes, 0);
@@ -101,3 +89,28 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 	}
 	return (1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
