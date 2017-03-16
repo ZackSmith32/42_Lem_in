@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 16:28:35 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 17:36:40 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_lemd(t_vect *nodes)
 {
-	t_lemd	*vect;
+	t_lemd	*vect_item;
 	size_t	len;
 	size_t	i;
 
@@ -22,8 +22,15 @@ void	print_lemd(t_vect *nodes)
 	i = 0;
 	while (i < len)
 	{
-		vect = *((t_lemd **)v_item(nodes, i));
-		ft_printf("name: %s\n", vect->name);
+		vect_item = *((t_lemd **)v_item(nodes, i));
+		ft_printf("name: %s", vect_item->name);
+		if (vect_item->s_e == 1)
+			ft_printf(" : start");
+		if (vect_item->s_e == 2)
+			ft_printf(" : end");
+		if (vect_item->connections)
+			print_char(vect_item->connections);
+		ft_printf("\n\n");
 		i++;
 	}
 }
@@ -39,7 +46,7 @@ void	print_char(t_vect *data)
 	while (i < len)
 	{
 		line = *((char **)v_item(data, i));
-		ft_printf("datas: %s\n", line);
+		ft_printf("\n > %s", line);
 		i++;
 	}
 }
@@ -47,12 +54,12 @@ void	print_char(t_vect *data)
 t_lemd	*return_match(t_vect *nodes, char *name)
 {
 	int		i;
-	t_lemd	node;
+	t_lemd	*node;
 
 	i = 0;
 	while (i < nodes->units)
 	{
-		node = *((t_lemd)v_item(nodes, i));
+		node = *((t_lemd **)v_item(nodes, i));
 		if (node->name == name)
 			return (node);
 		i++;

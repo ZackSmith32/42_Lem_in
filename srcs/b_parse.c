@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 14:38:06 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 17:42:17 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void		free_vector(t_vect *nodes)
 {
 	t_lemd	*temp;
-	int		len;
 	int		i;
 
-	len = nodes->units;
 	i = 0;
-	while (i < len)
+	while (i < nodes->units)
 	{
 		temp = (t_lemd *)v_item(nodes, i);
 		free(temp->name);
@@ -46,11 +44,11 @@ static int	make_graph(t_vect *data)
 		return (0);
 	if (!make_connections(data, nodes))
 		return (0);
+	print_char(data);
 	print_lemd(nodes);
-	// print_char(data);
+	free_vector(data);
 
 	// free_vector(nodes);
-	// free_vector(data);
 	return (1);
 
 }
@@ -72,7 +70,6 @@ static void	read_input(t_vect *data)
 
 int			parse()
 {
-	printf("in: parse \n");
 	t_vect	*data;
 	int		len;
 
@@ -83,7 +80,8 @@ int			parse()
 		ft_puterror("no input");
 		return (0);
 	}
-	make_graph(data);
+	if (!make_graph(data))
+		return (0);
 	return (1);
 }
 

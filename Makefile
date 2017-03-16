@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/15 14:32:13 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/15 16:53:36 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ FLAGS	=	-c -Wall -Wextra -Werror
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c			\
 			b_parse.c			\
-			g_constructors.c	\
 			i_parse_comments.c	\
 			j_make_nodes.c		\
 			k_print.c			\
 			l_make_connections.c\
-			test_mallocwrap.c	\
+			
+			# test_mallocwrap.c	\
 
 			
 SRCDIR  =	srcs/
