@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/11 15:59:22 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 14:49:47 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static int	lem_in()
 
 int			main(int argc, char **argv)
 {
+	if (argc > 2)
+		return (0);
+	if (ft_strequ(argv[1], "-v"))
+		g_verbose_flag = 1;
 	if (!lem_in())
 	{
 		ft_puterror("Error");

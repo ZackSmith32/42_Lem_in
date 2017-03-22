@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 14:37:09 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:27:36 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@ int		check_node(char *line)
 	char	**tab;
 
 	tab = ft_strsplit(line, ' ');
-	if (ft_tablen(tab) != 3)
-	{
-		ft_freetab(tab);
-		free(tab);
-		return (0);
-	}
-	if (tab[0][0] == '#' || tab[0][0] == 'L')
+	if (ft_tablen(tab) != 3 || tab[0][0] == '#' || tab[0][0] == 'L')
 	{
 		ft_freetab(tab);
 		free(tab);
@@ -50,17 +44,15 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 {
 	// ft_printf("in: create_node\n");
 	char	**tab;
-	t_lemd	*new;
-	int		*temp;
+	t_lemd	*new_node;
 	void	*ptr;
-	t_lemd	*temp2;
 
 	ptr = NULL;
 	tab = ft_strsplit(line, ' ');
-	new = (t_lemd *)ft_memalloc(sizeof(t_lemd));
-	new->name = ft_strdup(tab[0]);
-	new->s_e = s_e;
-	v_insert(nodes, 0, new);
+	new_node = (t_lemd *)ft_memalloc(sizeof(t_lemd));
+	new_node->name = ft_strdup(tab[0]);
+	new_node->s_e = s_e;
+	v_insert(nodes, 0, new_node);
 	ft_freetab(tab);
 	free(tab);
 	return (1);
@@ -69,7 +61,7 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 int				make_nodes(t_vect *data, t_vect *nodes)
 {
 	ft_printf("in: make nodes\n");
-	int		i;
+	size_t	i;
 	char	*line;
 
 	i = 0;
@@ -79,13 +71,11 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 		if (check_node(line))
 		{
 			create_node(line, nodes, 0);
+			free(line);
 			v_remove(data, i);
 			i = 0;
 		}
-		else
-		{
-			i++;
-		}
+		i++;
 	}
 	return (1);
 }

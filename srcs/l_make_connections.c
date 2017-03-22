@@ -6,51 +6,61 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 17:39:52 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 15:50:16 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
+t_lemd	*search_nodes_by_name(t_vect *nodes, char *search_name)
+{
+	size_t	i;
+	t_lemd	*temp;
+
+	i = 0;
+	while (i < nodes->units)
+	{
+		temp = *((t_lemd **)v_item(nodes, i));
+		if (ft_strequ(temp->name, search_name))
+			return (temp);
+		i++;
+	}
+	printf("search nodes return null\n");
+	return (NULL);
+}
+
 int		assign_connection(t_vect *nodes, char *connection)
 {
-	int		i;
+	size_t	i;
 	char	**tab;
-	t_lemd	*node;
+	t_lemd	*temp;
+	t_lemd	*node_to_connect;
 
 	i = 0;
 	tab = ft_strsplit(connection, '-');
-	while (i < nodes->units)
-	{
-		node = *((t_lemd **)v_item(nodes, i));
-		if (ft_strequ(node->name, tab[0]))
-		{
-			v_insert(node->connections, 0, ft_strdup(tab[1]));
-			ft_freetab(tab);
-			free(tab);
-			return (1);
-		}
-		i++;
-	}
+	temp = search_nodes_by_name(nodes, tab[0]);
+	node_to_connect = search_nodes_by_name(nodes, tab[1]);
+	if (!temp || !node_to_connect)
+		return (0);
+	v_insert(temp->connections, 0, node_to_connect);
 	ft_freetab(tab);
 	free(tab);
-	return (0);
+	return (1);
 }
 
 void	innitiate_connections(t_vect *nodes)
 {
-	int		i;
+	size_t	i;
 	t_lemd	*node;
 
 	i = 0;
 	while (i < nodes->units)
 	{
 		node = *((t_lemd **)v_item(nodes, i));
-		node->connections = v_new(0, sizeof(char *));
+		node->connections = v_new(0, sizeof(t_lemd *));
 		i++;
 	}
 }
-
 
 int		make_connections(t_vect *data, t_vect *nodes)
 {
@@ -70,6 +80,8 @@ int		make_connections(t_vect *data, t_vect *nodes)
 		else
 			return (0);
 	}
+	free(data->a);
+	free(data);
 	return (1);
 }
 

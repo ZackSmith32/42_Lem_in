@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 12:59:22 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 14:38:02 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:20:42 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	make_s_e(t_vect *data, t_vect *nodes, size_t i, int s_e)
 	char	*se_line;
 	char	*se_command;
 	t_lemd	*node;
-	int		num;
 
 	se_command = *((char **)v_item(data, i));
 	se_line = *((char **)v_item(data, i + 1));
@@ -46,8 +45,6 @@ static int	make_s_e(t_vect *data, t_vect *nodes, size_t i, int s_e)
 	}
 	else
 		return (0);
-
-
 }
 
 int			parse_comments(t_vect *data, t_vect *nodes)

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/15 17:36:40 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:01:14 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	print_lemd(t_vect *nodes)
 			ft_printf(" : start");
 		if (vect_item->s_e == 2)
 			ft_printf(" : end");
-		if (vect_item->connections)
-			print_char(vect_item->connections);
+		// if (vect_item->connections)
+		// 	print_lemd(vect_item->connections);
 		ft_printf("\n\n");
 		i++;
 	}
 }
 
-void	print_char(t_vect *data)
+void	print_vect_char(t_vect *data)
 {
 	char	*line;
 	size_t	i;
@@ -53,7 +53,7 @@ void	print_char(t_vect *data)
 
 t_lemd	*return_match(t_vect *nodes, char *name)
 {
-	int		i;
+	size_t	i;
 	t_lemd	*node;
 
 	i = 0;

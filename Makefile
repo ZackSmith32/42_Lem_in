@@ -6,12 +6,13 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/15 16:53:36 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 16:03:44 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
-FLAGS	=	-c -Wall -Wextra -Werror
+FLAGS	=	-c -Wall -Wextra #-Werror
+FSAN	=	#-g -fsanitize=address
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c			\
 			b_parse.c			\
@@ -19,22 +20,32 @@ CFILES	=	a_lem_in.c			\
 			j_make_nodes.c		\
 			k_print.c			\
 			l_make_connections.c\
+			m_free_vect.c		\
+			z_globals.c			\
+			test_mallocwrap.c	\
 			
-			# test_mallocwrap.c	\
 
+LIBS	=	libft.a				\
+			libftprintf.a		\
+			libarray.a			\
+			libvect.a			\
 			
 SRCDIR  =	srcs/
+OBJDIR	=	obj/
 HDIR	=	includes/
 LIBDIR  =	libdir/
+OFILES	=	$(addprefix $(OBJDIR), $(CFILES:.c=.o))
+LIBFILES=	$(addprefix $(LIBDIR), $(LIBS))
 
 .PHONY: all $(NAME) clean flcean re
 
 all: $(NAME)
 
-$(NAME): 
-	gcc $(addprefix $(SRCDIR), $(CFILES)) -o $@ -I $(HDIR)					\
-		-L. $(addprefix $(LIBDIR), 'libft.a' 'libftprintf.a' 'libarray.a' 	\
-			'libvect.a') 
+$(OBJDIR)%.o: $(SRCDIR)%.c
+	gcc $(FSAN) $(FLAGS) $< -o $@
+
+$(NAME): $(OFILES)
+	gcc $(FSAN) $(OFILES) -o $@ -I $(HDIR) -L. $(LIBFILES)
 	
 libft:
 	make re -C /nfs/2016/z/zsmith/libft_dir/libft
@@ -53,7 +64,7 @@ vect:
 	cp /nfs/2016/z/zsmith/vect/includes/vect.h ./includes
 
 clean:
-	/bin/rm -f $(addprefix $(SRCDIR), $(OFILES))
+	/bin/rm -f $(OFILES)
 
 fclean: clean
 	/bin/rm -f $(NAME)
