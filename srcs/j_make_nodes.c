@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 16:27:36 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 16:59:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		check_node(char *line)
 	tab = ft_strsplit(line, ' ');
 	if (ft_tablen(tab) != 3 || tab[0][0] == '#' || tab[0][0] == 'L')
 	{
+		// printf("check node error\n");
 		ft_freetab(tab);
 		free(tab);
 		return (0);
@@ -49,10 +50,12 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 
 	ptr = NULL;
 	tab = ft_strsplit(line, ' ');
+
 	new_node = (t_lemd *)ft_memalloc(sizeof(t_lemd));
 	new_node->name = ft_strdup(tab[0]);
 	new_node->s_e = s_e;
 	v_insert(nodes, 0, new_node);
+	
 	ft_freetab(tab);
 	free(tab);
 	return (1);
@@ -60,7 +63,7 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 
 int				make_nodes(t_vect *data, t_vect *nodes)
 {
-	ft_printf("in: make nodes\n");
+	// ft_printf("in: make nodes\n");
 	size_t	i;
 	char	*line;
 
@@ -68,6 +71,7 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 	while (i < data->units)
 	{
 		line = *((char **)v_item(data, i));
+		// printf("line = %s, i = %d\n", line, i);
 		if (check_node(line))
 		{
 			create_node(line, nodes, 0);
@@ -75,7 +79,8 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 			v_remove(data, i);
 			i = 0;
 		}
-		i++;
+		else
+			i++;
 	}
 	return (1);
 }

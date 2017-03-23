@@ -6,38 +6,39 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 16:03:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 20:10:03 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	make_graph(t_vect *data)
+static int	make_graph(t_vect *data, t_vect *nodes)
 {
 	ft_printf("in: make graph\n");
-	t_vect	*nodes;
-
-	nodes = v_new(0, sizeof(t_lemd *));
 	if (!parse_comments(data, nodes))
 	{
 		if (g_verbose_flag)
 			printf("Error: parse_comments\n");
 		return (0);
 	}
+	// print_lemd(nodes);
+	// print_vect_char(data);
 	if (!make_nodes(data, nodes))
 	{
 		if (g_verbose_flag)
 			printf("Error: make_nodes\n");
 		return (0);
 	}
+	// print_lemd(nodes);
+	// print_vect_char(data);
 	if (!make_connections(data, nodes))
 	{
 		if (g_verbose_flag)
 			printf("Error: make_connections\n");
 		return (0);
 	}
-	print_lemd(nodes);
-	free_vector_nodes(nodes);
+	free(data->a);
+	free(data);
 	return (1);
 }
 
@@ -56,7 +57,7 @@ static void	read_input(t_vect *data)
 	free(line);
 }
 
-int			parse()
+int			parse(t_vect *nodes)
 {
 	t_vect	*data;
 
@@ -68,7 +69,7 @@ int			parse()
 			ft_puterror("Error: No input\n");
 		return (0);
 	}
-	if (!make_graph(data))
+	if (!make_graph(data, nodes))
 		return (0);
 	return (1);
 }

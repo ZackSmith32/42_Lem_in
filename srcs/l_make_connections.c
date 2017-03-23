@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 15:50:16 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 17:38:30 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ int		assign_connection(t_vect *nodes, char *connection)
 	temp = search_nodes_by_name(nodes, tab[0]);
 	node_to_connect = search_nodes_by_name(nodes, tab[1]);
 	if (!temp || !node_to_connect)
+	{
+		if (g_verbose_flag)
+			ft_puterror("Error: assign_connection\n");
 		return (0);
+	}
 	v_insert(temp->connections, 0, node_to_connect);
 	ft_freetab(tab);
 	free(tab);
@@ -70,7 +74,9 @@ int		make_connections(t_vect *data, t_vect *nodes)
 	while (data->units)
 	{
 		connection = *((char **)v_item(data, 0));
-		if (ft_strstr(connection, "-"))
+		// might want to turn this into a function with more checks
+		// check if the connection is in the list
+		if (ft_strstr(connection, "-")) 
 		{
 			if (!assign_connection(nodes, connection))
 				return (0);
@@ -78,10 +84,12 @@ int		make_connections(t_vect *data, t_vect *nodes)
 			v_remove(data, 0);
 		} 
 		else
+		{
+			if (g_verbose_flag)
+				ft_puterror("Error: connection formatting\n");
 			return (0);
+		}
 	}
-	free(data->a);
-	free(data);
 	return (1);
 }
 

@@ -6,13 +6,27 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 16:01:14 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 20:20:19 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_lemd(t_vect *nodes)
+static void		print_connections(t_vect *connections)
+{
+	t_lemd	*connect;
+	size_t	i;
+
+	i = 0;
+	while (i < connections->units)
+	{
+		connect = *((t_lemd **)v_item(connections, i));
+		ft_printf("  > %s\n", connect->name);
+		i++;
+	}
+}
+
+void	print_vect_lemd(t_vect *nodes)
 {
 	t_lemd	*vect_item;
 	size_t	len;
@@ -28,9 +42,9 @@ void	print_lemd(t_vect *nodes)
 			ft_printf(" : start");
 		if (vect_item->s_e == 2)
 			ft_printf(" : end");
-		// if (vect_item->connections)
-		// 	print_lemd(vect_item->connections);
-		ft_printf("\n\n");
+		ft_printf("\n");
+		print_connections(vect_item->connections);
+		ft_printf("\n");
 		i++;
 	}
 }
@@ -49,6 +63,7 @@ void	print_vect_char(t_vect *data)
 		ft_printf("\n > %s", line);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 t_lemd	*return_match(t_vect *nodes, char *name)

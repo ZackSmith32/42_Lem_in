@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 14:49:47 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 20:12:16 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 static int	lem_in()
 {
-	
-	if (!parse())
+	t_vect	*nodes;
+
+	nodes = v_new(0, sizeof(t_lemd *));
+	if (!parse(nodes))
 		return (0);
+	print_vect_lemd(nodes);
+	// if (!find_routes(nodes))
+	// 	return (0);
 	return (1);
 }
 
@@ -28,7 +33,7 @@ int			main(int argc, char **argv)
 		g_verbose_flag = 1;
 	if (!lem_in())
 	{
-		ft_puterror("Error");
+		ft_puterror("Error: main");
 		return (0);
 	}
 	ft_printf("%@cyan@s\n", "Hello World");

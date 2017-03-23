@@ -6,24 +6,25 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/22 16:03:44 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/22 20:22:39 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
 FLAGS	=	-c -Wall -Wextra #-Werror
-FSAN	=	#-g -fsanitize=address
+FSAN	=	-g -fsanitize=address
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c			\
 			b_parse.c			\
+			c_find_routes.c		\
 			i_parse_comments.c	\
 			j_make_nodes.c		\
 			k_print.c			\
 			l_make_connections.c\
 			m_free_vect.c		\
 			z_globals.c			\
-			test_mallocwrap.c	\
 			
+			# test_mallocwrap.c	\
 
 LIBS	=	libft.a				\
 			libftprintf.a		\

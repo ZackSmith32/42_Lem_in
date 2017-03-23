@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 14:34:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/22 21:27:27 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef struct		s_lemd
 	t_vect			*connections;
 }					t_lemd;
 
+typedef struct		s_dist_table
+{
+	char			*name
+	int				distance;
+	t_vect			path;
+}					t_dist_table;
+
 typedef struct		s_path
 {
 	char			*name;
@@ -37,14 +44,20 @@ extern int g_verbose_flag;
 /*
 **	b_parse
 */
-int					parse();
+int				parse(t_vect *nodes);
+
+/*
+**	c_find_routes
+*/
+int				find_routes(t_vect *nodes);
+
 
 /*
 **	g_constructors
 */
-t_lemd				*data_constructor(char *name, char **connections);
-t_path				*path_constructor(char *name, int len, t_path *n_node, 
-						t_path *n_path);
+t_lemd			*data_constructor(char *name, char **connections);
+t_path			*path_constructor(char *name, int len, t_path *n_node, 
+					t_path *n_path);
 
 /*
 **	i_parse_comments
@@ -62,7 +75,7 @@ int				create_node(char *line, t_vect *nodes, int s_e);
 /*
 **	k_print
 */
-void			print_lemd(t_vect *nodes);
+void			print_vect_lemd(t_vect *nodes);
 void			print_vect_char(t_vect *data);
 t_lemd			*return_match(t_vect *nodes, char *name);
 
