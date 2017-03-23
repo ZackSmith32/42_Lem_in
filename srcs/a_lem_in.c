@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 20:12:16 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/23 11:16:39 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	lem_in()
 	if (!parse(nodes))
 		return (0);
 	print_vect_lemd(nodes);
-	// if (!find_routes(nodes))
-	// 	return (0);
+	if (!make_routes(nodes))
+		return (0);
 	return (1);
 }
 

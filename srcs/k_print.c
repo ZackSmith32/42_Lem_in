@@ -6,18 +6,20 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 20:20:19 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/23 12:57:56 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static void		print_connections(t_vect *connections)
+void		print_connections(t_vect *connections)
 {
 	t_lemd	*connect;
 	size_t	i;
 
 	i = 0;
+	if (connections->units == 0)
+		return ;
 	while (i < connections->units)
 	{
 		connect = *((t_lemd **)v_item(connections, i));
@@ -64,20 +66,4 @@ void	print_vect_char(t_vect *data)
 		i++;
 	}
 	ft_printf("\n");
-}
-
-t_lemd	*return_match(t_vect *nodes, char *name)
-{
-	size_t	i;
-	t_lemd	*node;
-
-	i = 0;
-	while (i < nodes->units)
-	{
-		node = *((t_lemd **)v_item(nodes, i));
-		if (node->name == name)
-			return (node);
-		i++;
-	}
-	return (0);
 }
