@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 20:20:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 22:34:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 13:23:45 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,14 @@ void	populate_dist_table(t_lemd *root_node, t_vect *dist_table, t_vect *queue)
 	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
 }
 
-int		make_routes(t_vect *nodes)
+int		make_routes(t_vect *nodes, t_vect **dist_table)
 {
 	printf("in : find_routes\n");
-	t_vect		*dist_table;
 	t_vect		*queue;
 	t_lemd		*start_node;
 	t_lemd		*start_node_table;
 
-	dist_table = create_dist_table(nodes);
+	*dist_table = create_dist_table(nodes);
 	// print_vect_lemd(dist_table);
 
 	queue = v_new(0, sizeof(t_lemd *));
@@ -135,15 +134,15 @@ int		make_routes(t_vect *nodes)
 	// start node is in dist_table, but it points to the same node that nodes points to
 	// so, when we update the s_e of the dist_table nodes, we are doing if for nodes
 	// as well.  Wiull probably have to save 
-	start_node_table = find_start_node(dist_table);
+	start_node_table = find_start_node(*dist_table);
 	start_node_table->s_e = 0;
 	v_insert(start_node_table->connections, 0, start_node_table);
 	
-	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
+	populate_dist_table(*(t_lemd **)v_item(queue, 0), *dist_table, queue);
+	// print_vect_lemd(dist_table);
 	
 
 	printf("after: populate_dist_table\n");
-	print_vect_lemd(dist_table);
 	return (1);
 }
 

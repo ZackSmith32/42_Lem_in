@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 16:57:27 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 13:25:06 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 static int	lem_in()
 {
 	t_vect	*nodes;
+	t_vect	*dist_table;
 
 	nodes = v_new(0, sizeof(t_lemd *));
+	dist_table = v_new(0, sizeof(t_lemd *));
 	if (!parse(nodes))
 		return (0);
 	print_vect_lemd(nodes);
-	if (!make_routes(nodes))
+	if (!make_routes(nodes, &dist_table))
 		return (0);
+	print_vect_lemd(dist_table);
+	
 	return (1);
 }
 

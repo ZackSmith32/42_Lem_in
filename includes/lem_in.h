@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 18:54:25 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 13:23:15 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				parse(t_vect *nodes);
 /*
 **	c_find_routes
 */
-int				make_routes(t_vect *nodes);
+int		make_routes(t_vect *nodes, t_vect **dist_table);
 
 /*
 **	d_find_routes_helpers

@@ -6,13 +6,13 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/23 11:37:29 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/24 13:25:23 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
 FLAGS	=	-c -Wall -Wextra -Werror
-FSAN	=	#-g -fsanitize=address
+FSAN	=	-fsanitize=address -g
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c				\
 			b_parse.c				\
@@ -44,7 +44,7 @@ LIBFILES=	$(addprefix $(LIBDIR), $(LIBS))
 all: $(NAME)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	gcc $(FSAN) $(FLAGS) $< -o $@
+	gcc  $(FLAGS) $< -o $@ $(FSAN)
 
 $(NAME): $(OFILES)
 	gcc $(FSAN) $(OFILES) -o $@ -I $(HDIR) -L. $(LIBFILES)
