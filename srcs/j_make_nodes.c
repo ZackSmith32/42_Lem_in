@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 16:59:09 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 15:33:05 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 
 	new_node = (t_lemd *)ft_memalloc(sizeof(t_lemd));
 	new_node->name = ft_strdup(tab[0]);
+	new_node->coordinate_x = ft_atoi(tab[1]);
+	new_node->coordinate_y = ft_atoi(tab[2]);
 	new_node->s_e = s_e;
 	v_insert(nodes, 0, new_node);
 	

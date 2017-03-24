@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:21:13 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 20:06:26 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 15:03:44 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		free_vector_nodes(t_vect *nodes)
 		free(temp->name);
 		free((temp->connections)->a);
 		free(temp->connections);
+		free(temp);
 		i++;
 	}
 	free(nodes->a);

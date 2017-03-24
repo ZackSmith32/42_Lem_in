@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/24 13:23:15 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 15:26:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 typedef struct		s_lemd
 {
 	int				s_e;
+	int				coordinate_x;
+	int				coordinate_y;
 	char			*name;
 	t_vect			*connections;
 }					t_lemd;

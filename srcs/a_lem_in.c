@@ -6,11 +6,16 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/24 13:25:06 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 15:30:24 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+// static int	output(t_vect nodes, t_vect dist_table)
+// {
+	// print_rooms_and_connections
+// }
 
 static int	lem_in()
 {
@@ -25,7 +30,10 @@ static int	lem_in()
 	if (!make_routes(nodes, &dist_table))
 		return (0);
 	print_vect_lemd(dist_table);
-	
+	printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+	print_vect_lemd(nodes);
+	free_vector_nodes(nodes);
+	free_vector_nodes(dist_table);
 	return (1);
 }
 

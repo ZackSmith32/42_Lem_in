@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 19:08:10 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 15:31:53 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	print_vect_lemd(t_vect *nodes)
 	while (i < len)
 	{
 		vect_item = *((t_lemd **)v_item(nodes, i));
-		ft_printf("name: %s", vect_item->name);
 		if (vect_item->s_e == 1)
-			ft_printf(" : start");
+			ft_printf("##start\n");
+		ft_printf("name: %s %d %d\n", vect_item->name, vect_item->coordinate_x, vect_item->coordinate_y);
 		if (vect_item->s_e == 2)
 			ft_printf(" : end");
 		ft_printf("\n");

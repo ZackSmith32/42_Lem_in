@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 20:20:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/24 13:23:45 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/24 14:51:40 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vect	*create_dist_table(t_vect *nodes)
 	while (i < nodes->units)
 	{
 		temp = (t_lemd *)ft_memalloc(sizeof(t_lemd));
-		temp->name = ((*((t_lemd **)v_item(nodes, i))))->name;
+		temp->name = ft_strdup(((*((t_lemd **)v_item(nodes, i))))->name);
 		temp->connections = v_new(0, sizeof(t_lemd*));
 		node_se_val = ((*((t_lemd **)v_item(nodes, i))))->s_e;
 		if (node_se_val == 2)
