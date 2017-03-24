@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 12:58:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/23 18:54:25 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int				create_node(char *line, t_vect *nodes, int s_e);
 /*
 **	k_print
 */
+void			print_path_of_node(t_vect *curr_table_path, int tabs);
 void			print_vect_lemd(t_vect *nodes);
 void			print_vect_char(t_vect *data);
 void			print_connections(t_vect *connections);

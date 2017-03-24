@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 15:31:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/13 12:31:19 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/23 14:59:28 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void		v_increase(t_vect *head);
 void		v_insert(t_vect *head, size_t i, void *data);
 void		*v_item(t_vect *vect, size_t index);
 void		v_remove(t_vect *vect, size_t i);
-
+void		*v_pop(t_vect *vect);
 
 #endif

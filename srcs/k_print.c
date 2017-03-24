@@ -6,11 +6,32 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 12:57:56 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/23 19:08:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void		print_path_of_node(t_vect *curr_table_path, int tabs)
+{
+	t_lemd	*connect;
+	size_t	i;
+	int		j;
+
+	i = 0;
+	if (curr_table_path->units == 0)
+		return ;
+	j = -1;
+	while (++j < tabs)
+		ft_printf("	");
+	while (i < curr_table_path->units)
+	{
+		connect = *((t_lemd **)v_item(curr_table_path, i));
+		ft_printf("[%s]->", connect->name);
+		i++;
+	}
+	ft_printf("\n");
+}
 
 void		print_connections(t_vect *connections)
 {
