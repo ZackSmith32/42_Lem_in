@@ -12,6 +12,29 @@
 
 #include "../includes/lem_in.h"
 
+void		print_rooms_and_connections(t_vect *nodes)
+{
+		t_lemd	*vect_item;
+	size_t	len;
+	size_t	i;
+
+	len = nodes->units;
+	i = 0;
+	while (i < len)
+	{
+		vect_item = *((t_lemd **)v_item(nodes, i));
+		if (vect_item->s_e == 1)
+			ft_printf("##start\n");
+		ft_printf("name: %s %d %d\n", vect_item->name, vect_item->coordinate_x, vect_item->coordinate_y);
+		if (vect_item->s_e == 2)
+			ft_printf(" : end");
+		ft_printf("\n");
+		print_connections(vect_item->connections);
+		ft_printf("\n");
+		i++;
+	}
+}
+
 void		print_path_of_node(t_vect *curr_table_path, int tabs)
 {
 	t_lemd	*connect;
