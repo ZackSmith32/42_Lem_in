@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 11:11:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 19:11:05 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 21:42:21 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,31 @@ void		move_ants(t_vect *shortest_path, int ant_num, int *finished_ants)
 			(*finished_ants)++;
 		if (before_node->ant != 0)
 			curr_node->ant = before_node->ant;
+		else
+			curr_node->ant = 0;
 		i--;
 	}
 	before_node = *((t_lemd **)v_item(shortest_path, i)); 
 	before_node->ant = ant_num;
+}
+
+void		free_shortest_path(t_vect *shortest_path_vect)
+{
+	t_vect	*path;
+	t_lemd	*node;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < shortest_path_vect->units)
+	{
+		node = *((t_vect **)v_item(shortest_path_vect, i));
+		free(node->name);
+		free(node);
+		i++;
+	}
+	free(shortest_path_vect->a);
+	free(shortest_path_vect);
 }
 
 void		path_output(t_vect *nodes, t_vect *dist_table, int ant_count)
@@ -67,8 +88,8 @@ void		path_output(t_vect *nodes, t_vect *dist_table, int ant_count)
 	shortest_path_vect = paths_vect(nodes, dist_table);
 	h = 0;
 	finished_ants = &h;
-	i = 0;
-	while (*finished_ants <= ant_count)
+	i = 1;
+	while (*finished_ants < ant_count)
 	{
 		if (i <= ant_count)
 			move_ants(shortest_path_vect, i, finished_ants);
@@ -77,7 +98,7 @@ void		path_output(t_vect *nodes, t_vect *dist_table, int ant_count)
 		print_ants(shortest_path_vect);
 		i++;
 	}
-
+	free_shortest_path(shortest_path_vect);
 }
 
 

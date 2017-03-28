@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 10:11:53 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 18:51:15 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 21:42:30 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		create_path(t_vect *table_end_node_connections,
 		node_from_dist = *((t_lemd **)v_item(table_end_node_connections, i));
 		printf("node_from_dist->name = %s\n", node_from_dist->name);
 		temp_node = (t_lemd *)ft_memalloc(sizeof(t_lemd));
-		temp_node->name = node_from_dist->name;
+		temp_node->name = ft_strdup(node_from_dist->name);
 		v_insert(shortest_path_vect, shortest_path_vect->units, temp_node);
 		i++;
 	}
@@ -87,11 +87,8 @@ t_vect		*paths_vect(t_vect *nodes, t_vect *dist_table)
 	char	*end_node_name;
 	t_lemd	*dist_table_end_node;
 	t_vect	*shortest_path_vect;
-	t_vect	*output_paths;
 
-	output_paths = v_new(0, sizeof(t_vect *));
 	shortest_path_vect = v_new(0, sizeof(t_lemd *));
-	v_insert(output_paths, 0, shortest_path_vect);
 	end_node_name = find_end_node(nodes)->name;
 	dist_table_end_node = search_nodes_by_name(dist_table, end_node_name);
 	create_path(dist_table_end_node->connections, shortest_path_vect);

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 18:54:23 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 21:48:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	lem_in()
 	// printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	// print_vect_lemd(nodes);
 	printf("ant_count = %d\n", *ant_count);
+	free(ant_count);
 	free_vector_nodes(nodes);
 	free_vector_nodes(dist_table);
 	return (1);
