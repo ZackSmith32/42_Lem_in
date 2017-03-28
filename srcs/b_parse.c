@@ -6,15 +6,22 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 20:10:03 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 10:54:57 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	make_graph(t_vect *data, t_vect *nodes)
+static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count)
 {
 	ft_printf("in: make graph\n");
+
+	if (!parse_ant_count(data, ant_count))
+	{
+		if (g_verbose_flag)
+			printf("Error: parse_ant_count\n");
+		return (0);
+	}
 	if (!parse_comments(data, nodes))
 	{
 		if (g_verbose_flag)
@@ -57,7 +64,7 @@ static void	read_input(t_vect *data)
 	free(line);
 }
 
-int			parse(t_vect *nodes)
+int			parse(t_vect *nodes, int *ant_count)
 {
 	t_vect	*data;
 
@@ -69,7 +76,7 @@ int			parse(t_vect *nodes)
 			ft_puterror("Error: No input\n");
 		return (0);
 	}
-	if (!make_graph(data, nodes))
+	if (!make_graph(data, nodes, ant_count))
 		return (0);
 	return (1);
 }
