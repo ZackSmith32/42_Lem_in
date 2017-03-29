@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 11:11:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 21:42:21 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 22:08:01 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,13 @@ void		move_ants(t_vect *shortest_path, int ant_num, int *finished_ants)
 
 void		free_shortest_path(t_vect *shortest_path_vect)
 {
-	t_vect	*path;
 	t_lemd	*node;
 	size_t	i;
-	size_t	j;
 
 	i = 0;
 	while (i < shortest_path_vect->units)
 	{
-		node = *((t_vect **)v_item(shortest_path_vect, i));
+		node = *((t_lemd **)v_item(shortest_path_vect, i));
 		free(node->name);
 		free(node);
 		i++;

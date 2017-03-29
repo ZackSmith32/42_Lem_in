@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 20:20:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 12:20:22 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/27 22:24:30 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /*
 **	duplicates nodes table essentially
 */
-t_vect	*create_dist_table(t_vect *nodes)
+t_vect	*create_dist_table(t_vect *nodes, t_vect *dist_table)
 {
 	printf("in : create_dist_table\n");
 	size_t			i;
-	t_vect			*dist_table;
+	// t_vect			*dist_table;
 	t_lemd			*temp;
 	int				node_se_val;
 
-	dist_table = v_new(0, sizeof(t_lemd*));
+	// dist_table = v_new(0, sizeof(t_lemd*));
 	i = 0;
 	while (i < nodes->units)
 	{
@@ -117,39 +117,46 @@ void	populate_dist_table(t_lemd *root_node, t_vect *dist_table, t_vect *queue)
 	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
 }
 
-int		make_routes(t_vect *nodes, t_vect **dist_table)
+/*
+**	> dist_table: distance table.  It stores the route from start node to
+**	each node.  Each node in distance table stores in it's connections
+**	the route to get to it from the start.  The process of filling out
+**	the routes is done through depth first search.
+**	> dist_table is the same structure as nodes:
+**		> t_vect of t_lemds, each t_lemd points to a vect of nodes (t_lemd's), 
+**			in this case the nodes are the path to the node form the start.
+*/
+int		make_routes(t_vect *nodes, t_vect *dist_table)
 {
 	printf("in : find_routes\n");
 	t_vect		*queue;
 	t_lemd		*start_node;
 	t_lemd		*start_node_table;
 
-	*dist_table = create_dist_table(nodes);
-	// print_vect_lemd(dist_table);
+	create_dist_table(nodes, dist_table);
 
 	queue = v_new(0, sizeof(t_lemd *));
 	start_node = find_start_node(nodes);
 	v_insert(queue, 0, start_node);
-	
-	// start node is in dist_table, but it points to the same node that nodes points to
-	// so, when we update the s_e of the dist_table nodes, we are doing if for nodes
-	// as well.  Wiull probably have to save 
-	start_node_table = find_start_node(*dist_table);
+
+	/*
+	**	> s_e: stands for start and end
+	**	> for the data parsing we set s_e = 1 for start node, but for this
+	**			part we are saying that s_e = 0 for the start node.
+	*/
+
+	start_node_table = find_start_node(dist_table);
 	start_node_table->s_e = 0;
 	v_insert(start_node_table->connections, 0, start_node_table);
-	
-	populate_dist_table(*(t_lemd **)v_item(queue, 0), *dist_table, queue);
-	// print_vect_lemd(dist_table);
-	
 
+	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
+	
+	free(queue->a);
+	free(queue);
 	printf("after: populate_dist_table\n");
 	return (1);
 }
 
-
-
-// need to figure out if nodes is getting copied over to dist table..
-// of if dist table is it's own thing
 
 
 

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:22:23 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 21:48:09 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 09:52:09 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,21 @@ static int	lem_in()
 {
 	t_vect	*nodes;
 	t_vect	*dist_table;
+	t_vect	*print_connects;
 	int		*ant_count;
 
 	nodes = v_new(0, sizeof(t_lemd *));
 	dist_table = v_new(0, sizeof(t_lemd *));
+	print_connects = v_new(0, sizeof(t_lemd *));
 	ant_count = (int *)ft_memalloc(sizeof(int));
 	if (!parse(nodes, ant_count))
 		return (0);
 	print_vect_lemd(nodes);
-	if (!make_routes(nodes, &dist_table))
+	if (!make_routes(nodes, dist_table))
 		return (0);
-	path_output(nodes, dist_table, *ant_count);
 	// print_vect_lemd(dist_table);
+	// req_output(nodes, *ant_count);
+	path_output(nodes, dist_table, *ant_count);
 	// printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 	// print_vect_lemd(nodes);
 	printf("ant_count = %d\n", *ant_count);

@@ -38,7 +38,7 @@ int				parse(t_vect *nodes, int *ant_count);
 /*
 **	c_find_routes
 */
-int				make_routes(t_vect *nodes, t_vect **dist_table);
+int				make_routes(t_vect *nodes, t_vect *dist_table);
 
 /*
 **	d_find_routes_helpers
