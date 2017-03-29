@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 19:03:31 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 10:15:03 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ extern int g_verbose_flag;
 /*
 **	b_parse
 */
-int				parse(t_vect *nodes, int *ant_count);
+int				parse(t_vect *nodes, int *ant_count, t_vect *print_connects);
 
 /*
 **	c_find_routes
@@ -49,7 +49,7 @@ t_vect			*paths_vect(t_vect *nodes, t_vect *dist_table);
 /*
 **	e_print_hq
 */
-void		path_output(t_vect *nodes, t_vect *dist_table, int ant_count);
+void			path_output(t_vect *nodes, t_vect *dist_table, int ant_count);
 
 /*
 **	h_parse_comments
@@ -75,12 +75,15 @@ void			print_path_of_node(t_vect *curr_table_path, int tabs);
 void			print_vect_lemd(t_vect *nodes);
 void			print_vect_char(t_vect *data);
 void			print_connections(t_vect *connections);
+void			print_str_vect(t_vect *str_vect);
+
 
 
 /*
 **	l_make_connections
 */
-int				make_connections(t_vect *data, t_vect *nodes);
+int				make_connections(t_vect *data, t_vect *nodes,
+					t_vect *print_connects);
 t_lemd			*search_nodes_by_name(t_vect *nodes, char *search_name);
 
 /*

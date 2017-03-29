@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 12:59:22 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/22 16:20:42 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 11:30:39 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ static int	make_s_e(t_vect *data, t_vect *nodes, size_t i, int s_e)
 		return (0);
 }
 
+int			check_dupe_start(t_vect *nodes)
+{
+	int		i;
+	t_lemd	*node;
+	int		counter;
+
+	i = 0;
+	counter = 0;
+	while (i < nodes->units)
+	{
+		node = *((t_lemd **)v_item(nodes, i));
+		if (node->s_e == 1 || node->s_e == 2)
+			counter++;
+		i++;
+	}
+	if (counter != 2)
+		return (0);
+	return (1);
+}
+
 int			parse_comments(t_vect *data, t_vect *nodes)
 {
 	size_t	i;
@@ -71,6 +91,8 @@ int			parse_comments(t_vect *data, t_vect *nodes)
 		else
 			i++;
 	}
+	if (!check_dupe_start(nodes))
+		return (0);
 	return (1);
 }
 

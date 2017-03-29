@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/24 15:31:53 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 10:17:08 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,18 @@ void	print_vect_char(t_vect *data)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void	print_str_vect(t_vect *str_vect)
+{
+	size_t		i;
+	char		*str;
+
+	i = 0;
+	while (i < str_vect->units)
+	{
+		str = *((char **)v_item(str_vect, i));
+		ft_printf("%s\n", str);
+		i++;
+	}
 }

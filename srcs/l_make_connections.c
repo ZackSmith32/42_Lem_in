@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/23 19:03:39 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 10:18:28 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_lemd	*search_nodes_by_name(t_vect *nodes, char *search_name)
 /*
 **	> second if statement is to guard against repeat connections
 */
-int		assign_connection(t_vect *nodes, char *connection)
+int		assign_connection(t_vect *nodes, char *connection, t_vect *print_connects)
 {
 	size_t	i;
 	char	**tab;
@@ -50,7 +50,10 @@ int		assign_connection(t_vect *nodes, char *connection)
 		return (0);
 	}
 	if (!search_nodes_by_name(temp->connections, tab[1]))
+	{
 		v_insert(temp->connections, 0, node_to_connect);
+		v_insert(print_connects, print_connects->units, ft_strdup(connection));
+	}
 	ft_freetab(tab);
 	free(tab);
 	return (1);
@@ -94,7 +97,7 @@ void	innitiate_connections(t_vect *nodes)
 	}
 }
 
-int		make_connections(t_vect *data, t_vect *nodes)
+int		make_connections(t_vect *data, t_vect *nodes, t_vect *print_connects)
 {
 	char	*connection;
 
@@ -106,7 +109,7 @@ int		make_connections(t_vect *data, t_vect *nodes)
 		// check if the connection is in the list
 		if (ft_strstr(connection, "-")) 
 		{
-			if (!assign_connection(nodes, connection) || 
+			if (!assign_connection(nodes, connection, print_connects) || 
 				!assign_connection_reverse(nodes, connection))
 				return (0);
 			free(connection);

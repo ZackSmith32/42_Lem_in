@@ -6,46 +6,43 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 10:54:57 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 11:12:44 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count)
+void		verbose_print(char *str)
 {
-	ft_printf("in: make graph\n");
+	if (g_verbose_flag)
+		ft_puterror(str);
+}
 
+static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count, 
+	t_vect *print_connects)
+{
 	if (!parse_ant_count(data, ant_count))
-	{
-		if (g_verbose_flag)
-			printf("Error: parse_ant_count\n");
 		return (0);
-	}
 	if (!parse_comments(data, nodes))
 	{
-		if (g_verbose_flag)
-			printf("Error: parse_comments\n");
+		verbose_print("Error: parse_comments\n");
 		return (0);
 	}
-	// print_lemd(nodes);
-	// print_vect_char(data);
 	if (!make_nodes(data, nodes))
 	{
-		if (g_verbose_flag)
-			printf("Error: make_nodes\n");
+		verbose_print("Error: make_nodes\n");
 		return (0);
 	}
-	// print_lemd(nodes);
-	// print_vect_char(data);
-	if (!make_connections(data, nodes))
+	if (!make_connections(data, nodes, print_connects))
 	{
-		if (g_verbose_flag)
-			printf("Error: make_connections\n");
+		verbose_print("Error: make_connections\n");
 		return (0);
 	}
-	free(data->a);
-	free(data);
+	if (data->units != 0)
+	{
+		verbose_print("Error: invalid input\n");
+		return (0);
+	}
 	return (1);
 }
 
@@ -64,7 +61,7 @@ static void	read_input(t_vect *data)
 	free(line);
 }
 
-int			parse(t_vect *nodes, int *ant_count)
+int			parse(t_vect *nodes, int *ant_count, t_vect *print_connects)
 {
 	t_vect	*data;
 
@@ -76,8 +73,14 @@ int			parse(t_vect *nodes, int *ant_count)
 			ft_puterror("Error: No input\n");
 		return (0);
 	}
-	if (!make_graph(data, nodes, ant_count))
+	if (!make_graph(data, nodes, ant_count, print_connects))
+	{
+		free(data->a);
+		free(data);
 		return (0);
+	}
+	free(data->a);
+	free(data);
 	return (1);
 }
 

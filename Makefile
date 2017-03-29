@@ -6,7 +6,7 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/27 22:25:05 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/29 10:12:57 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CFILES	=	a_lem_in.c				\
 			c_find_routes.c			\
 			d_find_routes_helpers.c	\
 			e_print_hq.c			\
+			f_requirements_output.c \
 			h_parse_ant_count.c		\
 			i_parse_comments.c		\
 			j_make_nodes.c			\
