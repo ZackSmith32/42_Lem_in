@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 20:20:55 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 22:24:30 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 16:42:31 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	add_node_to_table(t_lemd *root_node, t_lemd *list_node_child,
 	root_table_path = root_table_node->connections;
 	curr_table_node = search_nodes_by_name(dist_table, list_node_child->name);
 	curr_table_path = curr_table_node->connections;
-	curr_table_node->s_e = root_table_node->s_e++;
+	curr_table_node->s_e = (root_table_node->s_e + 1);
+	printf("		root_table_node->se = %d, cur_table_node->se = %d\n", root_table_node->s_e,curr_table_node->s_e);
 	i = 0;
 	printf("		root_table_path->units = %d\n", (int)root_table_path->units);
 	print_path_of_node(root_table_path, 2);
@@ -84,16 +85,18 @@ void	add_node_to_table(t_lemd *root_node, t_lemd *list_node_child,
 **	> root_node is from the nodes vector, not the table vector.
 **	> all variable with 'node', and without 'table' are from the node vector.
 */
-void	populate_dist_table(t_lemd *root_node, t_vect *dist_table, t_vect *queue)
+void	populate_dist_table(t_lemd *root_node, t_vect *dist_table, t_vect *queue,
+			char *end_node_name)
 {
 	printf("in : populate_dist_table root_node->name: %s\n", root_node->name);
 	size_t			i;
 	t_lemd			*list_node_child;
 	t_lemd			*table_node_child;
 	
-	// exit condition for recursion if end, or no more connection in queue
 	i = 0;
 	printf("		(root_node->connections)->units = %d\n", (int)(root_node->connections)->units);
+	// if (ft_strequ(root_node->name, end_node_name))
+	// 	return ;
 	while (i < (root_node->connections)->units)
 	{
 		list_node_child = *((t_lemd **)v_item(root_node->connections, i));
@@ -104,18 +107,31 @@ void	populate_dist_table(t_lemd *root_node, t_vect *dist_table, t_vect *queue)
 			add_node_to_table(root_node, list_node_child, dist_table);
 			v_insert(queue, queue->units, list_node_child);
 		}
-		if (ft_strequ(list_node_child->name, "0"))
+		if (ft_strequ(list_node_child->name, end_node_name))
 			return ;
 		i++;
 	}
-	if (ft_strequ(root_node->name, "5"))
-		return ;
 	v_remove(queue, 0);	
+	if (queue->units == 0)
+		return ;
 	printf("		queue:\n");
 	print_connections(queue);
 	printf("		queue done\n");
-	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
+	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue, 
+		end_node_name);
 }
+
+int		check_for_path(t_vect *dist_table, char *end_node_name)
+{
+	t_lemd	*table_end_node;
+
+	table_end_node = search_nodes_by_name(dist_table, end_node_name);
+	if ((table_end_node->connections)->units == 0)
+		return (0);
+	return (1);
+}
+
+
 
 /*
 **	> dist_table: distance table.  It stores the route from start node to
@@ -132,7 +148,7 @@ int		make_routes(t_vect *nodes, t_vect *dist_table)
 	t_vect		*queue;
 	t_lemd		*start_node;
 	t_lemd		*start_node_table;
-
+	t_lemd		*end_node_table;
 	create_dist_table(nodes, dist_table);
 
 	queue = v_new(0, sizeof(t_lemd *));
@@ -149,8 +165,13 @@ int		make_routes(t_vect *nodes, t_vect *dist_table)
 	start_node_table->s_e = 0;
 	v_insert(start_node_table->connections, 0, start_node_table);
 
-	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue);
-	
+	populate_dist_table(*(t_lemd **)v_item(queue, 0), dist_table, queue,
+		find_end_node(nodes)->name);
+	if (!check_for_path(dist_table, find_end_node(nodes)->name))
+	{
+		verbose_print("Error: no path\n");
+		return (0);
+	}
 	free(queue->a);
 	free(queue);
 	printf("after: populate_dist_table\n");

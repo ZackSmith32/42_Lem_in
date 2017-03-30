@@ -6,13 +6,13 @@
 #    By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/14 23:11:31 by zsmith            #+#    #+#              #
-#    Updated: 2017/03/29 10:12:57 by zsmith           ###   ########.fr        #
+#    Updated: 2017/03/29 16:22:11 by zsmith           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	lem-in
 FLAGS	=	-c #-Wall -Wextra -Werror
-FSAN	=	#-fsanitize=address -g
+FSAN	=	-g #-fsanitize=address -g
 CLEAKS	=	test_mallocwrap.c
 CFILES	=	a_lem_in.c				\
 			b_parse.c				\

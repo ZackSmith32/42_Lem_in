@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 17:09:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 10:15:03 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:29:01 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ extern int g_verbose_flag;
 **	b_parse
 */
 int				parse(t_vect *nodes, int *ant_count, t_vect *print_connects);
+void			verbose_print(char *str);
 
 /*
 **	c_find_routes
@@ -44,12 +45,20 @@ int				make_routes(t_vect *nodes, t_vect *dist_table);
 **	d_find_routes_helpers
 */
 t_lemd			*find_start_node(t_vect *nodes);
+t_lemd			*find_end_node(t_vect *nodes);
 t_vect			*paths_vect(t_vect *nodes, t_vect *dist_table);
 
 /*
 **	e_print_hq
 */
 void			path_output(t_vect *nodes, t_vect *dist_table, int ant_count);
+
+/*
+**	f_requirements_output
+*/
+void			req_output(t_vect *nodes, int ants, t_vect *print_connects);
+void			free_print_connects(t_vect *print_connects);
+
 
 /*
 **	h_parse_comments

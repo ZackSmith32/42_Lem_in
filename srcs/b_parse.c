@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 11:12:44 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 17:58:14 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count,
 	return (1);
 }
 
-static void	read_input(t_vect *data)
+void		read_input(t_vect *data)
 {
 	char	*line;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 10:18:28 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 18:07:02 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ int		make_connections(t_vect *data, t_vect *nodes, t_vect *print_connects)
 	while (data->units)
 	{
 		connection = *((char **)v_item(data, 0));
-		// might want to turn this into a function with more checks
-		// check if the connection is in the list
 		if (ft_strstr(connection, "-")) 
 		{
 			if (!assign_connection(nodes, connection, print_connects) || 

@@ -6,13 +6,31 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:06:50 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 10:54:12 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 18:06:58 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
  #include "../includes/lem_in.h"
 
-void	req_output(t_vect *nodes, int ants, t_vect *print_connects)
+void		free_print_connects(t_vect *print_connects)
+{
+	size_t		i;
+	char		*temp;
+
+	i = 0;
+	while (i < print_connects->units)
+	{
+		temp = *((char **)v_item(print_connects, i));
+		printf("free temp = %s\n", temp);
+		free(temp);
+		i++;
+	}
+	free(print_connects->a);	
+	free(print_connects);
+
+}
+
+void		req_output(t_vect *nodes, int ants, t_vect *print_connects)
 {
 	int		i;
 	t_lemd	*node;
@@ -31,5 +49,6 @@ void	req_output(t_vect *nodes, int ants, t_vect *print_connects)
 		i++;
 	}
 	print_str_vect(print_connects);
+	free_print_connects(print_connects);
 	printf("\n");
 }
