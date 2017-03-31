@@ -6,13 +6,13 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 18:07:02 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:57:18 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_lemd	*search_nodes_by_name(t_vect *nodes, char *search_name)
+t_lemd		*search_nodes_by_name(t_vect *nodes, char *search_name)
 {
 	size_t	i;
 	t_lemd	*temp;
@@ -25,14 +25,13 @@ t_lemd	*search_nodes_by_name(t_vect *nodes, char *search_name)
 			return (temp);
 		i++;
 	}
-	// printf("search nodes return null\n");
 	return (NULL);
 }
 
 /*
 **	> second if statement is to guard against repeat connections
 */
-int		assign_connection(t_vect *nodes, char *connection, t_vect *print_connects)
+int			assign_connection(t_vect *nodes, char *connection, t_vect *print_connects)
 {
 	size_t	i;
 	char	**tab;
@@ -122,32 +121,3 @@ int		make_connections(t_vect *data, t_vect *nodes, t_vect *print_connects)
 	}
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

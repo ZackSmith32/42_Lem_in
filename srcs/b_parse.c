@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 17:58:14 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:49:51 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,38 +83,3 @@ int			parse(t_vect *nodes, int *ant_count, t_vect *print_connects)
 	free(data);
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

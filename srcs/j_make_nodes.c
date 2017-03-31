@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/24 15:33:05 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:55:45 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 int		check_node(char *line)
 {
-	// ft_printf("in: check_node\n");
 	char	**tab;
 
 	tab = ft_strsplit(line, ' ');
 	if (ft_tablen(tab) != 3 || tab[0][0] == '#' || tab[0][0] == 'L')
 	{
-		// printf("check node error\n");
 		ft_freetab(tab);
 		free(tab);
 		return (0);
 	}
 	ft_freetab(tab);
 	free(tab);
-	// printf("check node success\n");
 	return (1);
 }
 
@@ -43,7 +40,6 @@ int		check_node(char *line)
 
 int		create_node(char *line, t_vect *nodes, int s_e)
 {
-	// ft_printf("in: create_node\n");
 	char	**tab;
 	t_lemd	*new_node;
 	void	*ptr;
@@ -57,7 +53,6 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 	new_node->coordinate_y = ft_atoi(tab[2]);
 	new_node->s_e = s_e;
 	v_insert(nodes, 0, new_node);
-	
 	ft_freetab(tab);
 	free(tab);
 	return (1);
@@ -65,7 +60,6 @@ int		create_node(char *line, t_vect *nodes, int s_e)
 
 int				make_nodes(t_vect *data, t_vect *nodes)
 {
-	// ft_printf("in: make nodes\n");
 	size_t	i;
 	char	*line;
 
@@ -73,7 +67,6 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 	while (i < data->units)
 	{
 		line = *((char **)v_item(data, i));
-		// printf("line = %s, i = %d\n", line, i);
 		if (check_node(line))
 		{
 			create_node(line, nodes, 0);
@@ -86,28 +79,3 @@ int				make_nodes(t_vect *data, t_vect *nodes)
 	}
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

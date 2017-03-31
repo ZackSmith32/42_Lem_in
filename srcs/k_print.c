@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:23:15 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 10:17:08 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:56:36 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		print_rooms_and_connections(t_vect *nodes)
 {
-		t_lemd	*vect_item;
+	t_lemd	*vect_item;
 	size_t	len;
 	size_t	i;
 
@@ -72,7 +72,7 @@ void		print_connections(t_vect *connections)
 	}
 }
 
-void	print_vect_lemd(t_vect *nodes)
+void		print_vect_lemd(t_vect *nodes)
 {
 	t_lemd	*vect_item;
 	size_t	len;
@@ -95,7 +95,7 @@ void	print_vect_lemd(t_vect *nodes)
 	}
 }
 
-void	print_vect_char(t_vect *data)
+void		print_vect_char(t_vect *data)
 {
 	char	*line;
 	size_t	i;
@@ -112,10 +112,10 @@ void	print_vect_char(t_vect *data)
 	ft_printf("\n");
 }
 
-void	print_str_vect(t_vect *str_vect)
+void		print_str_vect(t_vect *str_vect)
 {
-	size_t		i;
-	char		*str;
+	size_t	i;
+	char	*str;
 
 	i = 0;
 	while (i < str_vect->units)

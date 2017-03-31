@@ -6,18 +6,11 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 11:11:57 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/27 22:08:01 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:54:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-/*
-**	Options for printing our regular data
-		> copy input data vect and return, then regurgitate it
-		> add x and y coordinates to the struct so that they can
-			be printed out correctly
-*/
 
 void		print_ants(t_vect *shortest_path)
 {
@@ -81,7 +74,6 @@ void		path_output(t_vect *nodes, t_vect *dist_table, int ant_count)
 	int		h;
 	int		i;
 	t_vect	*shortest_path_vect;
-
 
 	shortest_path_vect = paths_vect(nodes, dist_table);
 	h = 0;

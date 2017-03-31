@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 12:59:22 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 11:30:39 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:43:36 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	make_s_e(t_vect *data, t_vect *nodes, size_t i, int s_e)
 
 int			check_dupe_start(t_vect *nodes)
 {
-	int		i;
+	size_t		i;
 	t_lemd	*node;
 	int		counter;
 

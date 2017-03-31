@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 09:06:50 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 18:06:58 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 20:01:20 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
  
@@ -21,7 +21,6 @@ void		free_print_connects(t_vect *print_connects)
 	while (i < print_connects->units)
 	{
 		temp = *((char **)v_item(print_connects, i));
-		printf("free temp = %s\n", temp);
 		free(temp);
 		i++;
 	}
@@ -32,7 +31,7 @@ void		free_print_connects(t_vect *print_connects)
 
 void		req_output(t_vect *nodes, int ants, t_vect *print_connects)
 {
-	int		i;
+	size_t	i;
 	t_lemd	*node;
 
 	ft_printf("%d\n", ants);
@@ -50,5 +49,5 @@ void		req_output(t_vect *nodes, int ants, t_vect *print_connects)
 	}
 	print_str_vect(print_connects);
 	free_print_connects(print_connects);
-	printf("\n");
+	ft_printf("\n");
 }

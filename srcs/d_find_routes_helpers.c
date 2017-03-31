@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 10:11:53 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 10:53:06 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/29 19:53:44 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,14 @@ void		print_shortest_path(t_vect *shortest_path)
 	size_t		i;
 	t_lemd		*temp;
 
-	printf("shortest path:\n");
 	i = 0;
 	while (i < shortest_path->units)
 	{
 		temp = *((t_lemd **)v_item(shortest_path, i));
-		printf("[%s] ", temp->name);
+		ft_printf("[%s] ", temp->name);
 		i++;
 	}
-	printf("\n\n");
+	ft_printf("\n\n");
 }
 
 void		create_path(t_vect *table_end_node_connections, 
