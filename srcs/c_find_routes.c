@@ -149,14 +149,3 @@ int		make_routes(t_vect *nodes, t_vect *dist_table)
 	free(queue);
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
