@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/23 10:11:53 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 19:53:44 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/30 18:40:33 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		print_shortest_path(t_vect *shortest_path)
 	size_t		i;
 	t_lemd		*temp;
 
+	ft_printf("shortest path: ");
 	i = 0;
 	while (i < shortest_path->units)
 	{

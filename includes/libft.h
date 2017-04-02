@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/22 12:02:11 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/09 14:30:02 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/15 19:01:21 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,5 @@ void				ft_putarr(int *a, int len);
 int					ft_keyhook(char key);
 void				ft_puterror(char *str);
 int					ft_isnum(char *str);
-
-
-
-
 
 #endif

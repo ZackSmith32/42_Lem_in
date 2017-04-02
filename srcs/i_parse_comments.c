@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 12:59:22 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 19:43:36 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/30 20:49:41 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int			check_dupe_start(t_vect *nodes)
 		i++;
 	}
 	if (counter != 2)
+	{
+		ft_puterror("Error: duplicate start/end\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -82,7 +85,7 @@ int			parse_comments(t_vect *data, t_vect *nodes)
 				return (0);
 			i = 0;
 		}
-		else if (!ft_strncmp("#", line, 1))
+		else if (!ft_strncmp("#", line, 1) || !ft_strncmp("L", line, 1))
 		{
 			free(line);
 			v_remove(data, i);
@@ -95,30 +98,3 @@ int			parse_comments(t_vect *data, t_vect *nodes)
 		return (0);
 	return (1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

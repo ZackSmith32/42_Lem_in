@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 14:27:38 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 19:57:18 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/30 20:09:49 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,11 @@ void	innitiate_connections(t_vect *nodes)
 	}
 }
 
+/*
+**	> moved 'free' and 'v_remove' outside of upper if, because I want to free
+**		and remove the line, wheather it is a valid connection or not. 
+**	> subjects says to ignore lines taht don't adhere to formatting.
+*/
 int		make_connections(t_vect *data, t_vect *nodes, t_vect *print_connects)
 {
 	char	*connection;
@@ -109,15 +114,11 @@ int		make_connections(t_vect *data, t_vect *nodes, t_vect *print_connects)
 			if (!assign_connection(nodes, connection, print_connects) || 
 				!assign_connection_reverse(nodes, connection))
 				return (0);
-			free(connection);
-			v_remove(data, 0);
 		} 
-		else
-		{
-			if (g_verbose_flag)
-				ft_puterror("Error: connection formatting\n");
-			return (0);
-		}
+		else if (g_verbose_flag)
+			ft_puterror("Error: unrecognized line format\n");
+		free(connection);
+		v_remove(data, 0);
 	}
 	return (1);
 }

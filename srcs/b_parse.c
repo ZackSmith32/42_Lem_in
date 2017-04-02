@@ -6,7 +6,7 @@
 /*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 22:48:12 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/29 19:49:51 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/03/30 22:34:10 by zsmith           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,28 @@ void		verbose_print(char *str)
 		ft_puterror(str);
 }
 
+void		free_extra_data(t_vect *data)
+{
+	size_t		i;
+	char		*str;
+
+	i = 0;
+	while (i < data->units)
+	{
+		str = *((char **)v_item(data, i));
+		free(str);
+		v_remove(data, i);
+	}
+}
+
 static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count, 
 	t_vect *print_connects)
 {
 	if (!parse_ant_count(data, ant_count))
+	{
+		ft_puterror("Error: ant cout\n");
 		return (0);
+	}
 	if (!parse_comments(data, nodes))
 	{
 		verbose_print("Error: parse_comments\n");
@@ -39,10 +56,7 @@ static int	make_graph(t_vect *data, t_vect *nodes, int *ant_count,
 		return (0);
 	}
 	if (data->units != 0)
-	{
-		verbose_print("Error: invalid input\n");
-		return (0);
-	}
+		free_extra_data(data);
 	return (1);
 }
 
