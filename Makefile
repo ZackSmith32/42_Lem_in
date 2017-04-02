@@ -12,7 +12,7 @@
 
 NAME	=	lem-in
 FLAGS	=	-c -Wall -Wextra -Werror
-FSAN	=	-fsanitize=address -g
+FSAN	=	#-fsanitize=address -g
 CFILES	=	a_lem_in.c					\
 			b_parse.c					\
 			c_find_routes.c				\
@@ -29,7 +29,7 @@ CFILES	=	a_lem_in.c					\
 			
 			# test_mallocwrap.c	\
 
-LIBS	=	libft/libft/libft.a				\
+LIBS	=	libft/libft/libft.a			\
 			libftprintf/libftprintf.a	\
 			libvect/libvect.a			\
 			
@@ -69,15 +69,3 @@ fclean: clean
 	make fclean -C libdir/libvect/
 
 re: fclean all
-
-
-
-
-
-
-#	Things needed to be done before submission	\
-	> copy lib dirs into lib folder				\
-		> update make files if necessary		\
-		> remove headers						\
-	> make the compile lib commands mandatory	\
-	> add a make -C to clean libs
