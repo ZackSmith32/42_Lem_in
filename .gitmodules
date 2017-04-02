@@ -1,0 +1,3 @@
+[submodule "libdir/libft"]
+	path = libdir/libft
+	url = https://github.com/ZackSmith32/42_libft.git
