@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_parse_comments.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 12:59:22 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/30 20:49:41 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/04/04 23:36:07 by mba              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int			check_dupe_start(t_vect *nodes)
 	}
 	if (counter != 2)
 	{
-		ft_puterror("Error: duplicate start/end\n");
+		if (g_verbose_flag)
+			ft_puterror("Error: duplicate start/end\n");
 		return (0);
 	}
 	return (1);

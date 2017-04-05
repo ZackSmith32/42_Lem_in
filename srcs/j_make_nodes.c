@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   j_make_nodes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsmith <zsmith@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mba <mba@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:17:41 by zsmith            #+#    #+#             */
-/*   Updated: 2017/03/30 20:47:39 by zsmith           ###   ########.fr       */
+/*   Updated: 2017/04/04 23:36:58 by mba              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int		check_node(char *line)
 	}
 	if (!ft_isnum(tab[1]) || !ft_isnum(tab[2]))
 	{
-		ft_puterror("Error: coordinate must be a number\n");
+		if (g_verbose_flag)
+			ft_puterror("Error: coordinate must be a number\n");
 		exit(1);
 	}
 	ft_freetab(tab);
